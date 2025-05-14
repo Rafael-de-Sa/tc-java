@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -123,7 +124,34 @@ public class EnterpriseDAO implements Dao<Integer, Enterprise> {
 
     @Override
     public List<Enterprise> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "SELECT * FROM enterprises";
+
+        List<Enterprise> enterprises = new ArrayList<>();
+
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Enterprise enterprise = new Enterprise();
+                enterprise.setEnterprise_id(rs.getInt("enterprise_id"));
+                enterprise.setTradeName(rs.getString("tradeName"));
+                enterprise.setRegistredName(rs.getString("registredName"));
+                enterprise.setCnpj(rs.getString("cnpj"));
+                enterprise.setAddress(rs.getString("address"));
+                enterprise.setWebsite(rs.getString("website"));
+                enterprise.setLogo(rs.getString("logo"));
+                enterprise.setPhoneNumber(rs.getString("phoneNumber"));
+                enterprise.setEmail(rs.getString("email"));
+                enterprise.setActive(rs.getBoolean("active"));
+
+                enterprises.add(enterprise);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return enterprises;
     }
 
 }
