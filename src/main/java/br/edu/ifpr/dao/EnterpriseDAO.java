@@ -51,7 +51,34 @@ public class EnterpriseDAO implements Dao<Integer, Enterprise> {
 
     @Override
     public Enterprise retrieve(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "SELECT * FROM enterprises WHERE enterprise_id = ?";
+
+        Enterprise enterprise = null;
+
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setInt(1, id);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                enterprise = new Enterprise();
+                enterprise.setEnterprise_id(rs.getInt("enterprise_id"));
+                enterprise.setTradeName(rs.getString("tradeName"));
+                enterprise.setRegistredName(rs.getString("registredName"));
+                enterprise.setCnpj(rs.getString("cnpj"));
+                enterprise.setAddress(rs.getString("address"));
+                enterprise.setWebsite(rs.getString("website"));
+                enterprise.setLogo(rs.getString("logo"));
+                enterprise.setPhoneNumber(rs.getString("phoneNumber"));
+                enterprise.setEmail(rs.getString("email"));
+                enterprise.setActive(rs.getBoolean("active"));
+
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return enterprise;
     }
 
     @Override

@@ -21,6 +21,9 @@ public class Enterprise {
     private String email;
     private boolean active;
 
+    public Enterprise() {
+    }
+
     public Enterprise(String tradeName, String registredName, String cnpj, String address, String website, String logo, String phoneNumber, String email, boolean active) {
         this.tradeName = tradeName;
         this.registredName = registredName;
