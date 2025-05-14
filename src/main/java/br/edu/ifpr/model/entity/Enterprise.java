@@ -116,4 +116,9 @@ public class Enterprise {
         this.active = active;
     }
 
+    @Override
+    public String toString() {
+        return "Enterprise{" + "enterprise_id=" + enterprise_id + ", tradeName=" + tradeName + ", registredName=" + registredName + ", cnpj=" + cnpj + ", address=" + address + ", website=" + website + ", logo=" + logo + ", phoneNumber=" + phoneNumber + ", email=" + email + ", active=" + active + '}';
+    }
+
 }

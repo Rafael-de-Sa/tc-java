@@ -73,7 +73,8 @@ public class EnterpriseDAO implements Dao<Integer, Enterprise> {
                 enterprise.setPhoneNumber(rs.getString("phoneNumber"));
                 enterprise.setEmail(rs.getString("email"));
                 enterprise.setActive(rs.getBoolean("active"));
-
+            } else {
+                System.out.println("Pesquisa não encontrada");
             }
 
         } catch (Exception ex) {
