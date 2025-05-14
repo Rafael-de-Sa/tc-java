@@ -83,12 +83,42 @@ public class EnterpriseDAO implements Dao<Integer, Enterprise> {
 
     @Override
     public void update(Enterprise entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "UPDATE enterprises SET tradeName = ?, registredName = ?, cnpj = ?, address = ?, website = ?, logo = ?, phoneNumber = ?, email = ?, active = ?"
+                + "WHERE enterprise_id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setString(1, entity.getTradeName());
+            pstmt.setString(2, entity.getRegistredName());
+            pstmt.setString(3, entity.getCnpj());
+            pstmt.setString(4, entity.getAddress());
+            pstmt.setString(5, entity.getWebsite());
+            pstmt.setString(6, entity.getLogo());
+            pstmt.setString(7, entity.getPhoneNumber());
+            pstmt.setString(8, entity.getEmail());
+            pstmt.setBoolean(9, entity.isActive());
+            pstmt.setInt(10, entity.getEnterprise_id());
+
+            pstmt.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "DELETE FROM enterprises"
+                + "WHERE enterprise_id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
+
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 
     @Override
