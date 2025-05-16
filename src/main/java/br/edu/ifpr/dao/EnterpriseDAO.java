@@ -85,7 +85,8 @@ public class EnterpriseDAO implements Dao<Integer, Enterprise> {
 
     @Override
     public void update(Enterprise entity) {
-        String sql = "UPDATE enterprises SET tradeName = ?, registredName = ?, cnpj = ?, address = ?, website = ?, logo = ?, phoneNumber = ?, email = ?, active = ?"
+        String sql = "UPDATE enterprises SET tradeName = ?, registredName = ?, cnpj = ?, address = ?, "
+                + "website = ?, logo = ?, phoneNumber = ?, email = ?, active = ? "
                 + "WHERE enterprise_id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
@@ -109,7 +110,7 @@ public class EnterpriseDAO implements Dao<Integer, Enterprise> {
 
     @Override
     public void delete(Integer id) {
-        String sql = "DELETE FROM enterprises"
+        String sql = "DELETE FROM enterprises "
                 + "WHERE enterprise_id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {

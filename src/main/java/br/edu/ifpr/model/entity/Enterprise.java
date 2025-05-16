@@ -10,7 +10,7 @@ package br.edu.ifpr.model.entity;
  */
 public class Enterprise {
 
-    private int enterprise_id;
+    private Integer enterprise_id;
     private String tradeName;
     private String registredName;
     private String cnpj;
@@ -19,12 +19,12 @@ public class Enterprise {
     private String logo;
     private String phoneNumber;
     private String email;
-    private boolean active;
+    private Boolean active;
 
     public Enterprise() {
     }
 
-    public Enterprise(String tradeName, String registredName, String cnpj, String address, String website, String logo, String phoneNumber, String email, boolean active) {
+    public Enterprise(String tradeName, String registredName, String cnpj, String address, String website, String logo, String phoneNumber, String email, Boolean active) {
         this.tradeName = tradeName;
         this.registredName = registredName;
         this.cnpj = cnpj;
@@ -119,6 +119,18 @@ public class Enterprise {
     @Override
     public String toString() {
         return "Enterprise{" + "enterprise_id=" + enterprise_id + ", tradeName=" + tradeName + ", registredName=" + registredName + ", cnpj=" + cnpj + ", address=" + address + ", website=" + website + ", logo=" + logo + ", phoneNumber=" + phoneNumber + ", email=" + email + ", active=" + active + '}';
+    }
+
+    public boolean validate() {
+        return tradeName != null
+                && registredName != null
+                && cnpj != null
+                && address != null
+                && logo != null
+                && phoneNumber != null
+                && email != null
+                && email.contains("@")
+                && active != null;
     }
 
 }

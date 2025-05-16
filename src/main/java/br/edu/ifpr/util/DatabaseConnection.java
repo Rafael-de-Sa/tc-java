@@ -6,6 +6,7 @@ package br.edu.ifpr.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 /**
@@ -16,8 +17,8 @@ public class DatabaseConnection {
 
     private static Connection connection;
 
-    public static Connection getConnection() {
-        if (connection == null) {
+    public static Connection getConnection() throws SQLException {
+        if (connection == null || connection.isClosed()) {
             try {
                 Properties props = new Properties();
                 props.load(DatabaseConnection.class.getResourceAsStream("/db.properties"));

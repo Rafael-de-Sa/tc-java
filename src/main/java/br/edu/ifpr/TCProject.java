@@ -22,13 +22,13 @@ public class TCProject {
         
         Enterprise enterprise = enterpriseDAO.retrieve(1);
         
-        System.out.println(enterprise.toString());
+       /* System.out.println(enterprise.toString());
         
         enterprise.setWebsite("www.sitedaempresa.com");
         
         enterpriseDAO.update(enterprise);
         
-        System.out.println(enterprise.toString());
+        System.out.println(enterprise.toString());*/
         
     }
     
